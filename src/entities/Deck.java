@@ -92,6 +92,19 @@ public class Deck {
 		Deck.cards = cards;
 	}
 	
+	public static void removeCard(Card card) {
+		cards.remove(card);
+	}
+	
+	public static Card addCard(int pos) {
+		Card card = cards.get(pos);
+		
+		System.out.println(card.getName() + card.getSimbol());
+		
+		removeCard(card);
+		
+		return card;
+	}
 	
 	
 }

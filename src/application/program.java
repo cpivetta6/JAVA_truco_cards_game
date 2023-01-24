@@ -41,77 +41,78 @@ public class program {
 						player_1.setPoints(0);
 						player_2.setPoints(0);
 						
-						System.out.println("Player 1 name:");
-						String player = scan.next();
+						player_1.setName("Player 1");
+						player_2.setName("Player 2");
 						
-						player_1.setName(player);
+						//STARTING GAMEPLAYS
 						
-						System.out.println("Player 2 name:");
-						player = scan.next();
 						
-						player_2.setName(player);
-						
-						//Game Play
-						
+						//created the main card
 						Card mainCard = new Card();
-						
-						
-						
 						
 						//CARD CASUAL DISTRIBUITION
 							
-							//main card casual
+							//max cards in the deck
+							//each cycle of the distribution i will have less cards in the deck
+							//and 3 cards for each player
+						
 							int maxCards = 40;
 							int pos = casualNumbers(maxCards--);
 							
-							
+							//casual card for the main card
 							mainCard = Deck.getCards().get(pos);
 							Deck.removeCard(mainCard);
 							
 									
 						
-							//3 cards for player 1 and remove from deck
-							
+							//3 casual cards for player 1 and remove from deck
 							player_1.getCards().addAll(Arrays.asList(Deck.addCard(casualNumbers(maxCards--)),Deck.addCard(casualNumbers(maxCards--)), Deck.addCard(casualNumbers(maxCards--))));
 							
 							
-							//3 cards for player 2 and remove from deck
-							
-							
+							//3 casual cards for player 2 and remove from deck
 							player_2.getCards().addAll(Arrays.asList(Deck.addCard(casualNumbers(maxCards--)),Deck.addCard(casualNumbers(maxCards--)), Deck.addCard(casualNumbers(maxCards--))));
 						
-							//STARTING GAME
+							
+							
+							
+							// 	----------------STARTING GAME------------------
+							
+							
+							//cards support
 							Card cardp1 = new Card();
 							Card cardp2 = new Card();
 							
+							//round numbers
+							int rounds = 0;
+							
+							//card selection position
 							int card_selection = 0;
 							
+							//player points
 							int p_points1 = 0;
 							int p_points2 = 0;
 							
-							while(p_points1 <= 3 || p_points2 <= 3) {
-								
+							
+							//STARTING ROUND GAMEPLAY
+							
+							while(rounds < 3) {
 								
 							
 							System.out.println("------------TRUCO GAME-----------------");
 							System.out.println("-Points                               -");
-							System.out.println("-Player1: " +p_points1+"                        -");
-							System.out.println("-Player2: " +p_points2+"                        -");
+							System.out.println("-Player1: " +p_points1+" | Player2: " +p_points2+"          -");
 							System.out.println("main card: "+ mainCard.getName() + mainCard.getSimbol());
 							System.out.println("-               --------              -");
 							
 							
 							//PLAYER 1 PLAY
 							System.out.println("-Cards Player 1:                      -");
-								
+								int card_option = 0;
 								for(Card c : player_1.getCards()) {
-									int i = 0;
-									System.out.println(i++ +  c.getName()+ "-" + c.getSimbol());
+									
+									System.out.println(card_option++ + "-"  +  c.getName()+ "-" + c.getSimbol());
 								}
-							
-							//System.out.println(" 1. "+player_1.getCards().get(0).getName()+" "+player_1.getCards().get(0).getSimbol()+ "\n 2. " +
-							//					   player_1.getCards().get(1).getName()+" "+player_1.getCards().get(1).getSimbol()+ "\n 3. " +
-							//					   player_1.getCards().get(2).getName()+" "+player_1.getCards().get(2).getSimbol());
+							card_option = 0;
 							
 							
 							System.out.println("Player 1 to play: select card 1, 2, 3");
@@ -131,13 +132,10 @@ public class program {
 							System.out.println("-Cards PLayer 2:                      -");
 							
 							for(Card c : player_2.getCards()) {
-								int i = 0;
-								System.out.println(i++ +  c.getName()+ "-" + c.getSimbol());
+								
+								System.out.println(card_option++  +" " +  c.getName()+ "-" + c.getSimbol());
 							}
 							
-							//System.out.println(" 1. "+player_2.getCards().get(0).getName()+" "+player_2.getCards().get(0).getSimbol()+ "\n 2. " +
-							//					   player_2.getCards().get(1).getName()+" "+player_2.getCards().get(1).getSimbol()+ "\n 3. " +
-							//					   player_2.getCards().get(2).getName()+" "+player_2.getCards().get(2).getSimbol());
 							System.out.println("-----------------------------------------");
 							
 							
@@ -158,16 +156,22 @@ public class program {
 							
 							
 							
-							/*
-							if(classPower(cardPlayedp1, mainCard) > classPower(car, mainCard)) {
+							
+							if(classPower(cardp1, mainCard) > classPower(cardp2, mainCard)) {
 									p_points1++;
 								}else {
 									p_points2++;
 								}
 							
-							*/
+								rounds ++;
 							
 							
+							}
+							
+							if(p_points1 > p_points2) {
+								System.out.println("Player 1 wins");
+							}else {
+								System.out.println("Player 2 wins");
 							}
 							
 							

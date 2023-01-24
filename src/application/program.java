@@ -85,8 +85,6 @@ public class program {
 							//round numbers
 							int rounds = 0;
 							
-							//card selection position
-							int card_selection = 0;
 							
 							//player points
 							int p_points1 = 0;
@@ -99,50 +97,69 @@ public class program {
 								
 							
 							System.out.println("------------TRUCO GAME-----------------");
-							System.out.println("-Points                               -");
-							System.out.println("-Player1: " +p_points1+" | Player2: " +p_points2+"          -");
-							System.out.println("main card: "+ mainCard.getName() + mainCard.getSimbol());
+							System.out.println("-                                     -");
+							System.out.println("	Player1: " +p_points1+" | Player2: " +p_points2+"          -");
+							System.out.println("-                                     -");
+							System.out.println("	main card: "+ mainCard.getName() + mainCard.getSimbol());
 							System.out.println("-               --------              -");
 							
 							
 							//PLAYER 1 PLAY
-							System.out.println("-Cards Player 1:                      -");
-								int card_option = 0;
+							int card_option = 0;
+							
+							
+								
+								System.out.println("-Cards Player 1:                      -");
+								
 								for(Card c : player_1.getCards()) {
 									
-									System.out.println(card_option++ + "-"  +  c.getName()+ "-" + c.getSimbol());
+									System.out.println((card_option+1) + ") "  +  c.getName()+ "-" + c.getSimbol());
+									card_option++;
 								}
-							card_option = 0;
+								
+								//card selection position
+								int card_selection = 0;
+								
+								//-----------------------------------------------------------------------------
+								//WHILE 
+								while(card_selection < 1 || card_selection > card_option) {
+									System.out.println("Player 1 to play: select card 1, 2, 3");
+									card_selection = scan.nextInt();
+								
+								}
+								card_selection--;
 							
-							
-							System.out.println("Player 1 to play: select card 1, 2, 3");
-							card_selection = scan.nextInt();
-							
+								
+								//-----------------------------------------------------------------------------	
 							//PLAYER 1 PLAY : PRINT
 							System.out.println("Player 1 : " + player_1.getCards().get(card_selection).getName() + " " + player_1.getCards().get(card_selection).getSimbol());
 							cardp1 = player_1.getCards().get(card_selection);
 							
 							//REMOVE PLAYER 1 CARD PLAYED
 							player_1.getCards().remove(card_selection);
+								
 							
+							card_option = 0;
 							
-							
+							//-----------------------------------------------------------------------------
 							//PLAYER 2 PLAY
 							System.out.println("-                                     -");
 							System.out.println("-Cards PLayer 2:                      -");
 							
 							for(Card c : player_2.getCards()) {
 								
-								System.out.println(card_option++  +" " +  c.getName()+ "-" + c.getSimbol());
+								System.out.println((card_option+1)  +") " +  c.getName()+ "-" + c.getSimbol());
+								card_option++;
 							}
 							
 							System.out.println("-----------------------------------------");
 							
-							
-							
-							System.out.println("Player 2 to play: select card 1, 2, 3");
-							card_selection = scan.nextInt();
-							
+							//WHILE
+							while(card_selection < 1 || card_selection > card_option) {
+								System.out.println("Player 2 to play: select card 1, 2, 3");
+								card_selection = scan.nextInt();
+							}
+							card_selection--;
 							//PLAYER 2 PLAY: PRINT
 							System.out.println("Player 2 : " + player_2.getCards().get(card_selection).getName() + " " + player_2.getCards().get(card_selection).getSimbol());
 							cardp2 = player_2.getCards().get(card_selection);
@@ -176,7 +193,7 @@ public class program {
 							
 							
 							
-							
+							scan.close();
 							
 							
 							

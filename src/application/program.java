@@ -1,8 +1,8 @@
 package application;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -81,13 +81,15 @@ public class program {
 							player_2.getCards().addAll(Arrays.asList(Deck.addCard(casualNumbers(maxCards--)),Deck.addCard(casualNumbers(maxCards--)), Deck.addCard(casualNumbers(maxCards--))));
 						
 							//STARTING GAME
+							Card cardp1 = new Card();
+							Card cardp2 = new Card();
 							
 							int card_selection = 0;
 							
 							int p_points1 = 0;
 							int p_points2 = 0;
 							
-							while(p_points1 < 12 || p_points2 < 12) {
+							while(p_points1 <= 3 || p_points2 <= 3) {
 								
 								
 							
@@ -97,20 +99,79 @@ public class program {
 							System.out.println("-Player2: " +p_points2+"                        -");
 							System.out.println("main card: "+ mainCard.getName() + mainCard.getSimbol());
 							System.out.println("-               --------              -");
-							System.out.println("-Cards Player 1:                      -");
-							System.out.println(" 1. "+player_1.getCards().get(0).getName()+" "+player_1.getCards().get(0).getSimbol()+ "\n 2. " +
-												   player_1.getCards().get(1).getName()+" "+player_1.getCards().get(1).getSimbol()+ "\n 3. " +
-												   player_1.getCards().get(2).getName()+" "+player_1.getCards().get(2).getSimbol());
-							System.out.println("-                                     -");
-							System.out.println("-Cards PLayer 2:                      -");
-							System.out.println(" 1. "+player_2.getCards().get(0).getName()+" "+player_2.getCards().get(0).getSimbol()+ "\n 2. " +
-												   player_2.getCards().get(1).getName()+" "+player_2.getCards().get(1).getSimbol()+ "\n 3. " +
-												   player_2.getCards().get(2).getName()+" "+player_2.getCards().get(2).getSimbol());
-							System.out.println("-----------------------------------------");
 							
+							
+							//PLAYER 1 PLAY
+							System.out.println("-Cards Player 1:                      -");
+								
+								for(Card c : player_1.getCards()) {
+									int i = 0;
+									System.out.println(i++ +  c.getName()+ "-" + c.getSimbol());
+								}
+							
+							//System.out.println(" 1. "+player_1.getCards().get(0).getName()+" "+player_1.getCards().get(0).getSimbol()+ "\n 2. " +
+							//					   player_1.getCards().get(1).getName()+" "+player_1.getCards().get(1).getSimbol()+ "\n 3. " +
+							//					   player_1.getCards().get(2).getName()+" "+player_1.getCards().get(2).getSimbol());
+							
+							
+							System.out.println("Player 1 to play: select card 1, 2, 3");
 							card_selection = scan.nextInt();
 							
+							//PLAYER 1 PLAY : PRINT
+							System.out.println("Player 1 : " + player_1.getCards().get(card_selection).getName() + " " + player_1.getCards().get(card_selection).getSimbol());
+							cardp1 = player_1.getCards().get(card_selection);
+							
+							//REMOVE PLAYER 1 CARD PLAYED
+							player_1.getCards().remove(card_selection);
+							
+							
+							
+							//PLAYER 2 PLAY
+							System.out.println("-                                     -");
+							System.out.println("-Cards PLayer 2:                      -");
+							
+							for(Card c : player_2.getCards()) {
+								int i = 0;
+								System.out.println(i++ +  c.getName()+ "-" + c.getSimbol());
 							}
+							
+							//System.out.println(" 1. "+player_2.getCards().get(0).getName()+" "+player_2.getCards().get(0).getSimbol()+ "\n 2. " +
+							//					   player_2.getCards().get(1).getName()+" "+player_2.getCards().get(1).getSimbol()+ "\n 3. " +
+							//					   player_2.getCards().get(2).getName()+" "+player_2.getCards().get(2).getSimbol());
+							System.out.println("-----------------------------------------");
+							
+							
+							
+							System.out.println("Player 2 to play: select card 1, 2, 3");
+							card_selection = scan.nextInt();
+							
+							//PLAYER 2 PLAY: PRINT
+							System.out.println("Player 2 : " + player_2.getCards().get(card_selection).getName() + " " + player_2.getCards().get(card_selection).getSimbol());
+							cardp2 = player_2.getCards().get(card_selection);
+							
+							//REMOVE CARD PLAYER 2
+							player_2.getCards().remove(card_selection);
+							
+							System.out.println("Card Player 1: " +cardp1.getName() + " " + cardp1.getSimbol());
+							System.out.println("vs");
+							System.out.println("Card Player 2: " +cardp2.getName() + " " + cardp2.getSimbol());
+							
+							
+							
+							/*
+							if(classPower(cardPlayedp1, mainCard) > classPower(car, mainCard)) {
+									p_points1++;
+								}else {
+									p_points2++;
+								}
+							
+							*/
+							
+							
+							}
+							
+							
+							
 							
 							
 							
@@ -136,5 +197,26 @@ public class program {
 		return casualNumber;
 	}
 	
+	public static int classPower(Card card, Card mainCard) {
+		int point = 0;
+		
+		Map<String, Integer> mapPoints = new HashMap<>();
+		
+		mapPoints.put("4", 1);
+		mapPoints.put("5", 2);
+		mapPoints.put("6", 3);
+		mapPoints.put("7", 4);
+		mapPoints.put("Q", 5);
+		mapPoints.put("J", 6);
+		mapPoints.put("K", 7);
+		mapPoints.put("A", 8);
+		mapPoints.put("2", 9);
+		mapPoints.put("3", 10);
+		
+		point = mapPoints.get(card.getName());
+		
+		
+		return point;
+	}
 	
 }

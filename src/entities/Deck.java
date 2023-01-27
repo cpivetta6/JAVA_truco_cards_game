@@ -99,7 +99,7 @@ public class Deck {
 	public static Card addCard(int pos) {
 		Card card = cards.get(pos);
 		
-		System.out.println(card.getName() + card.getSimbol());
+		//System.out.println(card.getName() + card.getSimbol());
 		
 		removeCard(card);
 		
